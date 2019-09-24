@@ -14,7 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM apache/skywalking-base:6.4.0 AS build
+FROM hpy253215039/skywalking-base:6.4.0 AS build
+
+RUN apk add --no-cache tzdata                                                 
+ENV TZ=Asia/Shanghai                                                          
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR skywalking
 

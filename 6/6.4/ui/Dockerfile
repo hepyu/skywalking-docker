@@ -16,6 +16,10 @@
 
 FROM apache/skywalking-base:6.4.0 AS build
 
+RUN apk add --no-cache tzdata
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 WORKDIR skywalking
 
 RUN set -eux; \
